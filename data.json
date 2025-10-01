@@ -1,0 +1,51 @@
+{
+  "offer_id": "1045",
+  "date": "2025-09-12",
+  "seller": {
+    "company": "CoffeeCups Sp. z o.o.",
+    "address": "ul. Leśna 2, 55-220 Chwałowice",
+    "nip": "9121725385",
+    "email": "hello@coffeecups.com.pl",
+    "phone": "+48 978 820 53",
+    "website": "www.coffeecups.com.pl",
+    "iban": "56 1050 1575 1000 0097 5152 2518"
+  },
+  "client": {
+    "company": "ORLEN Paliwa Sp. z o.o.",
+    "email": "Wiktoria.Lomnicka2@orlen.pl",
+    "phone": "605 783 093",
+    "address": "ul. Zglenickiego 44, Płock, 09-411"
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "Filiżanka CoffeeCups 150 ml – grawer, pokrywka, opakowanie, ściereczka pielęgnacyjna",
+      "quantity": 400,
+      "unit_price": 78.29,
+      "discount": 16,
+      "vat": 23,
+      "total": 26305.44
+    },
+    {
+      "id": 2,
+      "name": "Kubek CoffeeCups Premium 300 ml – nadruk full color",
+      "quantity": 200,
+      "unit_price": 45.50,
+      "discount": 10,
+      "vat": 23,
+      "total": 8190.00
+    }
+  ],
+  "summary": {
+    "vat": 7440.26,
+    "total": 41895.44
+  },
+  "images": {
+    "clientLogo": "https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/logo-images/orlenpaliwa_logo.jpg",
+    "front": "https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/mockups/TcNQBt5O67ePOESHrNyDI.jpeg",
+    "lid": "https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/mockups/Generated%20Image%20October%2001,%202025%20-%207_59PM.png",
+    "three_quarter": "https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/mockups/oavAG9O3sr-EFV16A5bbu.jpeg",
+    "brand": "https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/mockups/gpTEHDxFoM-8xLLhGcMMl.jpeg",
+    "giftset": "https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/giftsets/Generated%20Image%20October%2001,%202025%20-%208_04PM.png"
+  }
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Oferta #1045</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+    }
+
+    .container {
+      width: 210mm;
+      min-height: 297mm;
+      background: #fff;
+      margin: auto;
+      padding: 25px 35px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #0073e6;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 22px;
+      margin: 0;
+      color: #0073e6;
+    }
+
+    header .date {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section h2 {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #0073e6;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .info-block {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .info-block strong {
+      display: inline-block;
+      width: 90px;
+      color: #444;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    th {
+      background: #0073e6;
+      color: #fff;
+      text-align: center;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    .summary {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 13px;
+    }
+
+    .summary p {
+      margin: 2px 0;
+    }
+
+    .footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    .footer div {
+      text-align: center;
+      width: 45%;
+    }
+
+    .footer-line {
+      margin-top: 40px;
+      border-top: 1px solid #aaa;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div>
+          <h1>Oferta #{{ offer_id }}</h1>
+          <div class="date">Data: {{ date }}</div>
+      </div>
+      <div>
+          <strong>{{ seller.website|upper }}</strong><br>
+          Producent kubków
+      </div>
+    </header>
+
+    <!-- Seller & Client -->
+    <div class="section">
+      <div class="info-grid">
+        <div class="info-block">
+          <h2>Sprzedający</h2>
+       <p><strong>Nazwa firmy:</strong> {{ seller.company }}<br>
+         <strong>Adres:</strong> {{ seller.address }}<br>
+         <strong>NIP:</strong> {{ seller.nip }}<br>
+         <strong>Email:</strong> {{ seller.email }}<br>
+         <strong>Telefon:</strong> {{ seller.phone }}<br>
+         <strong>Strona:</strong> {{ seller.website }}<br>
+         <strong>IBAN:</strong> {{ seller.iban }}</p>
+        </div>
+        <div class="info-block">
+          <h2>Klient</h2>
+       <p><strong>Nazwa firmy:</strong> {{ client.company }}<br>
+         <strong>Email:</strong> {{ client.email }}<br>
+         <strong>Telefon:</strong> {{ client.phone }}<br>
+         <strong>Adres:</strong> {{ client.address }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="section">
+      <table>
+        <thead>
+          <tr>
+            <th>Lp.</th>
+            <th>Nazwa</th>
+            <th>Ilość</th>
+            <th>Cena Jednostkowa (PLN)</th>
+            <th>Rabat (%)</th>
+            <th>VAT (%)</th>
+            <th>Cena Całkowita (PLN)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td style="text-align:left">{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unit_price }}</td>
+            <td>{{ item.discount }}%</td>
+            <td>{{ item.vat }}%</td>
+            <td>{{ item.total }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary">
+      <p><strong>VAT:</strong> {{ summary.vat }} PLN</p>
+      <p><strong>Suma Łącznie:</strong> {{ summary.total }} PLN</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div>
+        <div class="footer-line"></div>
+        CoffeeCups.com.pl<br>
+        Data i podpis
+      </div>
+      <div>
+        <div class="footer-line"></div>
+        Klient<br>
+        Data i podpis
+      </div>
+    </div>
+  </div>
+</body>
+</html>
