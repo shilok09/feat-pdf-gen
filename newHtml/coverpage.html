@@ -94,28 +94,8 @@
       <p class="proposal-tagline">Elevate your brand with elegant, sustainable design.</p>
     </div>
     <div class="footer">
-      Prepared by CoffeeCups • <span id="dynamicDate"></span>
+      Prepared by CoffeeCups • October 2025
     </div>
   </div>
-
-  <script>
-    // Get date from template variable
-    const dateString = "{{ date }}";
-    
-    // Month names array
-    const monthNames = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    
-    // Parse the date (format: YYYY-MM-DD)
-    const dateParts = dateString.split('-');
-    const year = dateParts[0];
-    const monthIndex = parseInt(dateParts[1]) - 1; // Month is 0-indexed
-    const monthName = monthNames[monthIndex];
-    
-    // Display formatted date
-    document.getElementById('dynamicDate').textContent = monthName + ' ' + year;
-  </script>
 </body>
 </html>

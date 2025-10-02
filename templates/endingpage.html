@@ -130,30 +130,36 @@
       box-shadow: 0 4px 15px rgba(0, 115, 230, 0.15);
       border: 2px solid #e3f2fd;
       max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    .contact-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #0073e6;
-      margin-bottom: 20px;
+    .contact-logo {
+      max-width: 180px;
+      margin-bottom: 15px;
     }
 
     .contact-info {
       font-size: 14px;
       color: #333333;
       line-height: 1.8;
-      text-align: left;
-    }
-
-    .contact-info p {
-      margin: 8px 0;
+      text-align: center;
+      margin-bottom: 15px;
     }
 
     .contact-info strong {
-      display: inline-block;
-      width: 100px;
+      display: block;
+      font-weight: 600;
       color: #0073e6;
+      margin-bottom: 5px;
+    }
+
+    .qr-code {
+      width: 48px;
+      height: 48px;
+      margin-top: 10px;
     }
 
     /* Footer Section */
@@ -225,8 +231,7 @@
           <!-- Replace with actual logo image -->
           <!-- <img src="logos/coffeecups.jpg" alt="CoffeeCups Logo" style="max-width: 180px; max-height: 80px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"> -->
           <div style="margin-top:8px;">
-            <span style="font-weight:bold; font-size:12px; color:#333; letter-spacing:1px;">COFFEECUPS.COM.PL</span><br>
-            <span style="font-size:11px; color:#555;">Producent kubków</span>
+            <img src="https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/logo-images/coffeecups.jpg" alt="CoffeeCups Logo" class="logo">
           </div>
         </div>
       </div>
@@ -239,38 +244,27 @@
       
       <!-- Main Title -->
       <h1 class="thank-you-title">Thank You</h1>
-      
-      <!-- Decorative Line -->
       <div class="decorative-line"></div>
-      
-      <!-- Thank You Message -->
       <p class="thank-you-message">
-        We appreciate your interest in our premium coffee cup solutions. Our team is committed to delivering exceptional quality and service that exceeds your expectations.
+        Thank you for considering CoffeeCups for your premium branded gifts.<br>
+        We are dedicated to delivering elegant, sustainable products that elevate your brand.
       </p>
-      
       <p class="thank-you-message">
-        We look forward to the opportunity to partner with you and bring your brand vision to life with our expertly crafted products.
+        We look forward to partnering with you and bringing your vision to life.
       </p>
-      
-      <!-- Contact Section -->
       <div class="contact-section">
-        <h2 class="contact-title">Get in Touch</h2>
+       <img src="https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/logo-images/coffeecups.jpg" alt="CoffeeCups Logo" class="logo">
         <div class="contact-info">
-          <p><strong>Email:</strong> hello@coffeecups.com.pl</p>
-          <p><strong>Phone:</strong> +48 798 728 053</p>
-          <p><strong>Website:</strong> www.coffeecups.com.pl</p>
-          <p><strong>Address:</strong> Belgian 6, 55-220 Jelcz-Laskowice, Poland</p>
+          <strong>CoffeeCups</strong>
+          hello@coffeecups.com.pl<br>
+          +48 798 728 053<br>
+          www.coffeecups.com.pl<br>
+          Belgian 6,55-220 Jelcz-Laskowice, Poland
         </div>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=48x48&data=https://coffeecups.com.pl" alt="QR code" class="qr-code">
       </div>
     </div>
     
-    <!-- Footer Section -->
-    <!-- <div class="footer-section">
-      <p class="footer-text">Crafted with passion by the CoffeeCups Team</p>
-      <p class="footer-website">COFFEECUPS.COM.PL</p>
-    </div>
-     -->
-    <!-- Decorative Blue Accent - Bottom -->
     <div class="blue-accent-bottom">
       <div style="position: relative; z-index: 2; text-align: center; padding: 50px 60px;">
         <p class="footer-text">Crafted with passion by the CoffeeCups Team</p>

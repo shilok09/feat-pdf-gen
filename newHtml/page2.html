@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Oferta #{{ offer_id }} – Product Visuals</title>
+  <title>Oferta #1045 – Product Visuals</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     @page {
@@ -29,46 +29,41 @@
       box-sizing: border-box;
     }
     header {
-      position: relative;
+      text-align: left;
+      justify-content: left;
+      display: flex;
       margin-bottom: 50px;
       padding-bottom: 25px;
-      padding-left: 0;
       border-bottom: 1px solid #e5e5e7;
-      min-height: 70px;
     }
     header h1 {
       font-size: 28px;
       font-weight: 700;
-      margin: 0;
-      margin-right: 20px;
-      padding: 0;
+      margin: 0 0 12px 0;
+      margin-top: 15px;
+      margin-right: 14px;
       color: #111214;
       letter-spacing: -0.5px;
-      display: inline-block;
-      vertical-align: top;
+      display: block;
+      white-space: nowrap;
     }
-    /* .accent-line {
-      width: 3px;
-      height: 60px;
-      background: #0071e3;
-      margin: 0 15px;
-      border-radius: 2px;
-      display: inline-block;
-      vertical-align: top;
-    } */
     header .subtitle {
       font-size: 13px;
       color: #86868b;
       font-weight: 400;
       letter-spacing: 0.3px;
       line-height: 1.6;
-      max-width: 450px;
-      margin: 0;
-      padding: 0;
-      padding-top: 5px;
-      padding-left: 5px;
-      display: inline-block;
-      vertical-align: top;
+      max-width: 600px;
+      margin: 0 auto;
+      margin-left: 10px;
+      margin-top: 20px;
+    }
+    .accent-line {
+      width: 3px;
+      height: 60px;
+      background: #0071e3;
+      margin: 15px auto 0 auto;
+      border-radius: 2px;
     }
     .product-grid {
       display: grid;
@@ -141,44 +136,39 @@
   <div class="container">
     <header>
       <h1>Product Visuals</h1>
-      <!-- <div class="accent-line"></div> -->
+      <div class="accent-line"></div>
       <p class="subtitle">Premium lifestyle images of CoffeeCups 150 ml with silver engraved logo and premium packaging</p>
     </header>
-
     <div class="product-grid">
       <div class="mockup-card">
         <div class="image-container">
-          <img src="{{ images.front }}" alt="Front View – Silver Engraved Logo">
+          <img src="https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/mockups/gpTEHDxFoM-8xLLhGcMMl.jpeg" alt="Front View – Silver Engraved Logo">
         </div>
         <div class="mockup-title">Front View – Silver Engraved Logo</div>
         <div class="mockup-description">Elegant branding, premium finish</div>
       </div>
-
       <div class="mockup-card">
         <div class="image-container">
-          <img src="{{ images.lid }}" alt="Top-Down – Lifestyle">
+          <img src="https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/mockups/Generated%20Image%20October%2001,%202025%20-%207_59PM.png" alt="Top-Down – Lifestyle">
         </div>
         <div class="mockup-title">Top-Down – Lifestyle</div>
         <div class="mockup-description">Cup in use, premium context</div>
       </div>
-
       <div class="mockup-card">
         <div class="image-container">
-          <img src="{{ images.three_quarter }}" alt="Three-Quarter – Premium">
+          <img src="https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/mockups/oavAG9O3sr-EFV16A5bbu.jpeg" alt="Three-Quarter – Premium">
         </div>
         <div class="mockup-title">Three-Quarter – Premium</div>
         <div class="mockup-description">Detail and finish</div>
       </div>
-
       <div class="mockup-card">
         <div class="image-container">
-          <img src="{{ images.brand }}" alt="Lifestyle – In Office">
+          <img src="https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/mockups/TcNQBt5O67ePOESHrNyDI.jpeg" alt="Lifestyle – In Office">
         </div>
         <div class="mockup-title">Lifestyle – In Office</div>
         <div class="mockup-description">Brand in daily use</div>
       </div>
     </div>
-
     <div class="footer-note">
       All images are for presentation purposes. Final product may vary by project specification.
     </div>
