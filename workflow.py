@@ -226,8 +226,20 @@ class WorkflowOrchestrator:
         Returns:
             str: Path to generated PDF file, or None if workflow failed.
         """
+        print(f"🔧 DEBUG: run_with_custom_data called with: {data_file_path}")
         self.data_file_path = Path(data_file_path)
-        return await self.run(template_list)
+        print(f"🔧 DEBUG: data_file_path set to: {self.data_file_path}")
+        print(f"🔧 DEBUG: data file exists: {self.data_file_path.exists()}")
+        
+        # Reinitialize components with the new data file path
+        print("🔧 DEBUG: Reinitializing components...")
+        self.initialize_components()
+        print("🔧 DEBUG: Components reinitialized")
+        
+        print("🔧 DEBUG: Starting workflow...")
+        result = await self.run(template_list)
+        print(f"🔧 DEBUG: Workflow completed. Result: {result}")
+        return result
 
 
 def main():

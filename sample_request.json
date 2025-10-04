@@ -11,10 +11,10 @@
     "iban": "56 1050 1575 1000 0097 5152 2518"
   },
   "client": {
-    "company": "ORLEN Paliwa Sp. z o.o.",
-    "email": "Wiktoria.Lomnicka2@orlen.pl",
-    "phone": "605 783 093",
-    "address": "ul. Zglenickiego 44, Płock, 09-411"
+    "company": "MUTTI Technologies",
+    "email": "sk@orlen.pl",
+    "phone": "030204020502",
+    "address": "G10/4 ISLAMABAD PAKISTAN"
   },
   "items": [
     {
@@ -23,6 +23,15 @@
       "quantity": 400,
       "unit_price": 78.29,
       "discount": 16,
+      "vat": 23,
+      "total": 26305.44
+    },
+    {
+      "id": 3,
+      "name": " CoffeeCups 150 ml – grawer, pokrywka, opakowanie, ściereczka pielęgnacyjna",
+      "quantity": 400,
+      "unit_price": 71.29,
+      "discount": 12,
       "vat": 23,
       "total": 26305.44
     },
