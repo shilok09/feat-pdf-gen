@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oferta CoffeeCups - Strona Tytułowa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4;
+      margin: 25mm;
+    }
+    body {
+      font-family: 'Montserrat', 'Poppins', 'Lato', sans-serif;
+      background: #fff;
+      color: #111214;
+      margin: 0;
+      padding: 0;
+    }
+    .cover-container {
+      width: 210mm;
+      height: 297mm;
+      margin: auto;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+    }
+    .logo-section {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0 40px;
+    }
+    .logo {
+      max-height: 60px;
+      max-width: 160px;
+      object-fit: contain;
+      filter: grayscale(100%) contrast(120%) brightness(80%);
+    }
+    .center-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .proposal-title {
+      font-size: 46px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    .decorative-line {
+      width: 60px;
+      height: 3px;
+      background: #0071e3;
+      margin: 20px 0;
+      border-radius: 2px;
+    }
+    .proposal-subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      color: #444;
+      margin-bottom: 12px;
+    }
+    .proposal-tagline {
+      font-size: 16px;
+      font-weight: 300;
+      color: #666;
+      max-width: 480px;
+      line-height: 1.5;
+    }
+    .footer {
+      font-size: 12px;
+      color: #555;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cover-container">
+    <!-- Company Logo Only -->
+    <div class="logo-section">
+      <img src="https://uhldhrwvpbhbfurebvao.supabase.co/storage/v1/object/public/logo-images/coffeecups.jpg" alt="CoffeeCups Logo" class="logo">
+    </div>
+    <div class="center-content">
+      <h1 class="proposal-title">Oferta Handlowa</h1>
+      <div class="decorative-line"></div>
+      <p class="proposal-subtitle">Markowe Kubki Termiczne Premium</p>
+      <p class="proposal-tagline">Podnieś prestiż swojej marki dzięki eleganckiemu, ekologicznemu designowi.</p>
+    </div>
+    <div class="footer">
+      Przygotowane przez CoffeeCups • <span id="dynamicDate"></span>
+    </div>
+  </div>
+
+  <script>
+    // Get date from template variable
+    const dateString = "{{ date }}";
+    
+    // Month names array
+    const monthNames = [
+      "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
+      "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"
+    ];
+    
+    // Parse the date (format: YYYY-MM-DD)
+    const dateParts = dateString.split('-');
+    const year = dateParts[0];
+    const monthIndex = parseInt(dateParts[1]) - 1; // Month is 0-indexed
+    const monthName = monthNames[monthIndex];
+    
+    // Display formatted date
+    document.getElementById('dynamicDate').textContent = monthName + ' ' + year;
+  </script>
+</body>
+</html>

@@ -21,11 +21,13 @@ class HTMLGenerator:
         Args:
             data_file_path (str): Path to the JSON data file. Defaults to 'data.json' in current directory.
             templates_folder (str): Path to templates folder. Defaults to 'templates' in current directory.
+                                   If None, will be auto-selected based on OfferLanguage in JSON data.
             output_folder (str): Path to output folder. Defaults to 'htmlGenerated' in current directory.
         """
         self.base_dir = Path(__file__).parent
         self.data_file_path = Path(data_file_path) if data_file_path else self.base_dir / 'data.json'
-        self.templates_folder = Path(templates_folder) if templates_folder else self.base_dir / 'templates'
+        self.templates_folder_override = Path(templates_folder) if templates_folder else None
+        self.templates_folder = None  # Will be set after loading data
         self.output_folder = Path(output_folder) if output_folder else self.base_dir / 'htmlGenerated'
         
         self.data: Dict[str, Any] = {}
@@ -33,7 +35,7 @@ class HTMLGenerator:
         
     def load_data(self) -> Dict[str, Any]:
         """
-        Load data from JSON file.
+        Load data from JSON file and determine the template folder based on OfferLanguage.
         
         Returns:
             Dict containing the loaded data.
@@ -49,6 +51,25 @@ class HTMLGenerator:
             self.data = json.load(f)
         
         print(f"✓ Loaded data from: {self.data_file_path}")
+        
+        # Determine template folder based on OfferLanguage
+        if self.templates_folder_override:
+            self.templates_folder = self.templates_folder_override
+            print(f"✓ Using manually specified templates folder: {self.templates_folder}")
+        else:
+            offer_language = self.data.get('OfferLanguage', 'English').strip()
+            
+            if offer_language.lower() == 'polish':
+                self.templates_folder = self.base_dir / 'templates-Polish'
+                print(f"✓ Language detected: Polish - Using templates-Polish folder")
+            elif offer_language.lower() == 'english':
+                self.templates_folder = self.base_dir / 'templates-English'
+                print(f"✓ Language detected: English - Using templates-English folder")
+            else:
+                # Default to English if language not recognized
+                self.templates_folder = self.base_dir / 'templates-English'
+                print(f"⚠ Language '{offer_language}' not recognized. Defaulting to templates-English folder")
+        
         return self.data
     
     def setup_jinja_environment(self):
@@ -114,13 +135,13 @@ class HTMLGenerator:
         
         Args:
             template_list (List[str]): List of template names to render.
-                                       Defaults to common templates.
+                                       Defaults to common templates including endingpage.
         
         Returns:
             List[Path]: List of paths to generated HTML files.
         """
         if template_list is None:
-            template_list = ['coverpage.html', 'page1.html', 'page2.html', 'page3.html']
+            template_list = ['coverpage.html', 'page1.html', 'page2.html', 'page3.html', 'endingpage.html']
         
         generated_files = []
         

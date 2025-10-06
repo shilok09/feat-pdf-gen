@@ -7,6 +7,7 @@ This FastAPI application provides a REST API for generating PDFs from structured
 ## Features
 
 - ✅ **Comprehensive Data Validation**: Pydantic models with detailed validation rules
+- ✅ **Multi-Language Support**: Generate offers in English or Polish based on `OfferLanguage` field
 - ✅ **Async Processing**: Non-blocking PDF generation using async/await
 - ✅ **Error Handling**: Proper HTTP status codes and error responses
 - ✅ **API Documentation**: Auto-generated OpenAPI/Swagger docs
@@ -51,6 +52,8 @@ Use the provided `sample_request.json` file or create your own JSON with the fol
 {
   "offer_id": "string",
   "date": "YYYY-MM-DD",
+  "version": "v1.0",
+  "OfferLanguage": "English",
   "seller": {
     "company": "string",
     "address": "string", 
@@ -153,6 +156,8 @@ curl -X POST "http://localhost:8000/generate-pdf" \
 - All fields are required unless specified otherwise
 - `items` array must contain at least one item
 - All URLs in `images` must be valid HTTP/HTTPS URLs
+- `version` (optional): Version of the offer (e.g., "v1.0", "v2.0") - Defaults to "v1.0" if not specified
+- `OfferLanguage` (optional): "English" or "Polish" - Defaults to "English" if not specified
 
 ### Validation Rules
 - **Email fields**: Must be valid email format

@@ -90,6 +90,8 @@ class OfferData(BaseModel):
     """Main offer data model for PDF generation."""
     offer_id: str = Field(..., min_length=1, description="Unique offer identifier")
     date: Date = Field(..., description="Offer date")
+    version: str = Field(default="v1.0", description="Version of the offer (e.g., v1.0, v2.0)")
+    OfferLanguage: str = Field(default="English", description="Language for the offer (English or Polish)")
     seller: SellerInfo = Field(..., description="Seller information")
     client: ClientInfo = Field(..., description="Client information")
     items: List[Item] = Field(..., min_items=1, description="List of items in the offer")
@@ -155,7 +157,8 @@ async def generate_pdf(offer_data: OfferData) -> PDFGenerationResponse:
     Generate PDF from offer data.
     
     This endpoint accepts structured offer data, validates it using Pydantic models,
-    saves it to data.json, and triggers the PDF generation workflow.
+    saves it to a temporary JSON file, triggers the PDF generation workflow, and
+    cleans up the temporary file after completion.
     
     Args:
         offer_data: Validated offer data containing all necessary information
@@ -166,14 +169,15 @@ async def generate_pdf(offer_data: OfferData) -> PDFGenerationResponse:
     Raises:
         HTTPException: 422 for validation errors, 500 for processing errors
     """
+    data_file_path = None
     try:
         logger.info(f"Received PDF generation request for offer ID: {offer_data.offer_id}")
         
-        # Save the validated data to data.json
+        # Save the validated data to temporary JSON file
         data_file_path = Path(f"data_{offer_data.offer_id}_{uuid.uuid4().hex[:8]}.json")
         with open(data_file_path, "w", encoding="utf-8") as f:
             json.dump(offer_data.model_dump(mode="json"), f, indent=2, ensure_ascii=False)
-        logger.info("Successfully saved offer data to data.json")
+        logger.info(f"Successfully saved offer data to temporary file: {data_file_path}")
         
         # Simply call the workflow - it handles everything
         logger.info("Starting PDF generation workflow...")
@@ -200,6 +204,12 @@ async def generate_pdf(offer_data: OfferData) -> PDFGenerationResponse:
             )
         
         logger.info(f"PDF generated successfully at: {pdf_path}")
+        
+        # Clean up temporary JSON file after successful PDF generation
+        if data_file_path and data_file_path.exists():
+            data_file_path.unlink()
+            logger.info(f"✓ Cleaned up temporary file: {data_file_path}")
+        
         return PDFGenerationResponse(
             status="success",
             message="PDF generated successfully",
@@ -208,16 +218,28 @@ async def generate_pdf(offer_data: OfferData) -> PDFGenerationResponse:
             
     except asyncio.TimeoutError:
         logger.error("PDF generation timed out after 5 minutes")
+        # Clean up temporary file on timeout
+        if data_file_path and data_file_path.exists():
+            data_file_path.unlink()
+            logger.info(f"✓ Cleaned up temporary file after timeout: {data_file_path}")
         raise HTTPException(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT,
             detail="PDF generation timed out - process took longer than 5 minutes"
         )
     except HTTPException:
+        # Clean up temporary file on HTTP exception
+        if data_file_path and data_file_path.exists():
+            data_file_path.unlink()
+            logger.info(f"✓ Cleaned up temporary file after error: {data_file_path}")
         # Re-raise HTTP exceptions as-is
         raise
     except Exception as e:
         # Catch any unexpected errors
         logger.error(f"Unexpected error in generate_pdf: {e}", exc_info=True)
+        # Clean up temporary file on unexpected error
+        if data_file_path and data_file_path.exists():
+            data_file_path.unlink()
+            logger.info(f"✓ Cleaned up temporary file after unexpected error: {data_file_path}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Internal server error: {str(e)}"

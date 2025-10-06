@@ -1,6 +1,8 @@
 {
   "offer_id": "1045",
   "date": "2025-11-12",
+  "version": "v1.0",
+  "OfferLanguage": "Polish",
   "seller": {
     "company": "CoffeeCups Sp. z o.o.",
     "address": "ul. Leśna 2, 55-220 Chwałowice",
@@ -11,7 +13,7 @@
     "iban": "56 1050 1575 1000 0097 5152 2518"
   },
   "client": {
-    "company": "MUTTI Technologies",
+    "company": "ORLEN PALIWA",
     "email": "sk@orlen.pl",
     "phone": "030204020502",
     "address": "G10/4 ISLAMABAD PAKISTAN"

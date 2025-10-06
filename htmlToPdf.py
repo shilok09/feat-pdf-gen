@@ -40,7 +40,7 @@ class PDFConverter:
         self.pdf_filename = "offer.pdf"
     
     def load_data(self):
-        """Load data from JSON file to get client information."""
+        """Load data from JSON file to get client information and generate PDF filename."""
         if not self.data_file_path.exists():
             print(f"⚠ Warning: data.json not found: {self.data_file_path}")
             return
@@ -48,13 +48,19 @@ class PDFConverter:
         with open(self.data_file_path, 'r', encoding='utf-8') as f:
             self.data = json.load(f)
         
-        # Get client company name for PDF filename
-        client_company = self.data.get('client', {}).get('company', 'offer')
-        # Sanitize filename (remove invalid characters)
-        self.pdf_filename = "".join(
+        # Get client company name, offer_id, and version for PDF filename
+        client_company = self.data.get('client', {}).get('company', 'Client')
+        offer_id = self.data.get('offer_id', 'offer')
+        version = self.data.get('version', 'v1.0')
+        
+        # Sanitize client company name (remove invalid characters)
+        sanitized_company = "".join(
             c if c.isalnum() or c in (' ', '-', '_') else '_' 
             for c in client_company
-        ) + ".pdf"
+        ).replace(' ', '_')
+        
+        # Create filename: ClientName_OfferID_Version.pdf
+        self.pdf_filename = f"{sanitized_company}_{offer_id}_{version}.pdf"
         
         print(f"✓ PDF will be named: {self.pdf_filename}")
     
